@@ -31,35 +31,6 @@ railway-hello-python/
 └─ railway.toml
 ```
 
-#### main.py
-
-```python
-from fastapi import FastAPI
-import uvicorn, os
-
-app = FastAPI()
-
-@app.get("/")
-def root():
-    return "Hello, World!"
-
-if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=int(os.getenv("PORT", 8000)),  # Railway injects PORT
-    )
-```
-
-#### requirements.txt
-
-```bash
-fastapi==0.110.2
-uvicorn[standard]==0.29.0
-```
-
-#### Running locally
-
 1. Clone the repository
 2. Create and activate a virtual environment
 3. Install dependencies
