@@ -1,0 +1,11 @@
+# This file is exclusively used by Railway.app during deployment
+# It is not used for local development
+#
+# Purpose:
+# - Defines how Railway should run your application in production
+# - Configures deployment-specific settings
+# - Similar to setting environment variables in Railway's dashboard UI
+# but version controlled with your code
+
+[deploy]
+startCommand = "uvicorn main:app --host 0.0.0.0 --port $PORT"
