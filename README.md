@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 #### requirements.txt
 
-```
+```bash
 fastapi==0.110.2
 uvicorn[standard]==0.29.0
 ```
@@ -140,3 +140,48 @@ You now have:
 * A local dev workflow that needs only Python, plus an optional CLI neatly isolated in Docker.
 
 Happy shipping!
+
+## Google Search Solution
+
+Here's how to deploy a "Hello, World!" FastAPI application using Docker on Railway:
+
+* Project Setup:
+  * Create a project directory.
+  * Inside, create main.py with the following content:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+```
+
+Create a requirements.txt file.
+
+```bash
+fastapi>=0.115.8
+uvicorn
+```
+
+* Dockerfile:
+  * Create a Dockerfile in the project root:
+
+```Dockerfile
+FROM python:3-alpine
+WORKDIR /app
+COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+* Deploy to Railway:
+  * Sign in to Railway.
+  * Create a new project and choose "Deploy from GitHub Repo" or use the Railway CLI.
+  * Link your repository containing the FastAPI app and Dockerfile.
+  * Railway will automatically detect the Dockerfile, build the image, and deploy the application.
+* Access the Application:
+  * Once deployed, Railway will provide a URL to access your application.
+  * Open the URL in your browser to see the `{"Hello": "World"}` response.
